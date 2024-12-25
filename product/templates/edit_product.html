@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Product log</title>
+</head>
+<body>
+{#category dropdown, product name, quantity, prize, description, product image#}
+
+<div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Product Category</h4>
+                  <p class="card-description">
+                    Fill the given details..
+                  </p>
+                  <form class="forms-sample" method="post" action="{% url 'updateproductlist' %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleSelectGender">Category</label>
+                        <select class="form-control" id="exampleSelectGender" name="category" >
+                          <option>Select Category</option>
+                            {% for d in data %}
+                          <option>{{ d.user_name }}</option>
+                            {% endfor %}
+                        </select>
+                      </div>
+                    <div class="form-group">
+                      <label for="exampleInputName1">Product Name</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Product Name" name="pname" value="{{ data.Pname }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputCity1">Quantity</label>
+                      <input type="number" class="form-control" id="exampleInputCity1" placeholder="Quantity" name="quantity" min="1" maxlength="10" value="{{ data.Quantity }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputCity1">Prize</label>
+                      <input type="text" class="form-control" id="exampleInputCity1" placeholder="Prize" name="prize" value="{{ data.Price }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Product Description</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" name="description">{{ data.Description }}</textarea>
+                    </div>
+                    <div class="form-group">
+                      <label>File upload</label>
+                      <input type="file" name="img[]" class="file-upload-default">
+                      <div class="input-group col-xs-12">
+                        <input type="file" class="form-control file-upload-info" placeholder="Product Image" name="pimage" value="{{ data.Pimage }}">
+                        <span class="input-group-append">
+                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                        </span>
+                      </div>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</body>
+</html>
+{% endblock %}

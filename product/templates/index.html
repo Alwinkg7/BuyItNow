@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>BuyItNow</title>
+  <link rel="stylesheet" href="{% static 'vendors/mdi/css/materialdesignicons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+  <link rel="stylesheet" href="{%  static 'css/style.css' %}">
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+</head>
+<body>
+  <div class="container-scroller d-flex">
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <ul class="nav">
+        <li class="nav-item sidebar-category">
+          <p>Navigation</p>
+          <span></span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'indexpage' %}">
+            <i class="mdi mdi-view-quilt menu-icon"></i>
+            <span class="menu-title">Dashboard</span>
+            <div class="badge badge-info badge-pill">2</div>
+          </a>
+        </li>
+        <li class="nav-item sidebar-category">
+          <p>Components</p>
+          <span></span>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'addcategory' %}">
+            <i class="mdi mdi-view-headline menu-icon"></i>
+            <span class="menu-title">Add Category</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'productlist' %}">
+            <i class="mdi mdi-view-headline menu-icon"></i>
+            <span class="menu-title">Add Product</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'displaycategory' %}">
+            <i class="mdi mdi-view-headline menu-icon"></i>
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'displayproductlist' %}">
+            <i class="mdi mdi-view-headline menu-icon"></i>
+            <span class="menu-title">Products</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'displaycontact' %}">
+            <i class="mdi mdi-view-headline menu-icon"></i>
+            <span class="menu-title">Customer feedback</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'displayuserdata' %}">
+            <i class="mdi mdi-view-headline menu-icon"></i>
+            <span class="menu-title">Userdata</span>
+          </a>
+        </li>
+        <li class="nav-item sidebar-category">
+          <p>Pages</p>
+          <span></span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+            <i class="mdi mdi-account menu-icon"></i>
+            <span class="menu-title">Login Page</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="auth">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{% url 'adminloginpage' %}"> Login </a></li>
+              <li class="nav-item"> <a class="nav-link" href="{% url 'adminloginpage' %}"> Lockscreen </a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <div class="container-fluid page-body-wrapper">
+      <nav class="navbar col-lg-12 col-12 px-0 py-0 py-lg-4 d-flex flex-row">
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-menu"></span>
+          </button>
+          <div class="navbar-brand-wrapper">
+            <a class="navbar-brand brand-logo" href="index.html"><img src="{% static 'images/logo.svg' %}" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{% static 'images/logo-mini.svg' %}" alt="logo"/></a>
+          </div>
+            {% if request.session.username %}
+          <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Welcome back, {{ request.session.username }} </h4>
+            {% endif %}
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item">
+              <h4 class="mb-0 font-weight-bold d-none d-xl-block">Continue Exploring</h4>
+            </li>
+            <li class="nav-item dropdown mr-1">
+              <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
+                <i class="mdi mdi-calendar mx-0"></i>
+                <span class="count bg-info">2</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+                <p class="mb-0 font-weight-normal float-left dropdown-header">Notfication</p>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                      <img src="" alt="image" class="profile-pic">
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="nav-item dropdown mr-2">
+              <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="#" data-toggle="dropdown">
+                <i class="mdi mdi-email-open mx-0"></i>
+                <span class="count bg-danger">1</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                <p class="mb-0 font-weight-normal float-left dropdown-header">More</p>
+
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-warning">
+                      <i class="mdi mdi-settings mx-0"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <h6 class="preview-subject font-weight-normal">Settings</h6>
+                    <p class="font-weight-light small-text mb-0 text-muted">
+                      Private message
+                    </p>
+                  </div>
+                </a>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-info">
+                      <i class="mdi mdi-account-box mx-0"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <h6 class="preview-subject font-weight-normal">New user registration</h6>
+                    <p class="font-weight-light small-text mb-0 text-muted">
+                      2 days ago
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </li>
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+          </button>
+        </div>
+        <div class="navbar-menu-wrapper navbar-search-wrapper d-none d-lg-flex align-items-center">
+          <ul class="navbar-nav mr-lg-2">
+            <li class="nav-item nav-search d-none d-lg-block">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search Here..." aria-label="search" aria-describedby="search">
+              </div>
+            </li>
+          </ul>
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item nav-profile dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                  {% if request.session.username %}
+                      <span class="nav-profile-name">{{ request.session.username }}</span>
+                  {% endif %}
+              </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                <a class="dropdown-item">
+                  <i class="mdi mdi-settings text-primary"></i>
+                  Settings
+                </a>
+                <a class="dropdown-item" href="{% url 'adminlogout' %}">
+                  <i class="mdi mdi-logout text-primary"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link icon-link">
+                <i class="mdi mdi-plus-circle-outline"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link icon-link">
+                <i class="mdi mdi-web"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link icon-link">
+                <i class="mdi mdi-clock-outline"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="main-panel">
+        {% block content %}
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-12 col-xl-6 grid-margin stretch-card">
+            </div>
+          </div>
+          <div class="row">
+          </div>
+          <div class="row">
+              {% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+  <script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'js/template.js' %}"></script>
+  <script src="{% static 'js/dashboard.js' %}"></script>
+</body>
+</html>
